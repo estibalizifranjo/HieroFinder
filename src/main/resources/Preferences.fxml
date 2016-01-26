@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="es.udc.pfc.Controllers.PreferencesController">
+    <bottom>
+        <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <items>
+                <Button fx:id="cancelButton" alignment="CENTER" cancelButton="true" defaultButton="true"
+                        mnemonicParsing="false" onAction="#cancelButtonAction" text="%button.cancel"
+                        textAlignment="CENTER"/>
+                <Button fx:id="applyButton" mnemonicParsing="false" onAction="#applyButtonAction" text="%button.apply"/>
+            </items>
+        </ToolBar>
+    </bottom>
+    <center>
+        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <tabs>
+                <Tab text="%tab.general">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TextField fx:id="maxDocsTextField" layoutX="207.0" layoutY="25.0" prefHeight="25.0"
+                                           prefWidth="63.0">
+                                    <tooltip>
+                                        <Tooltip text="If you write 0, there's no a max document established"/>
+                                    </tooltip>
+                                </TextField>
+                                <Label layoutX="32.0" layoutY="30.0" prefHeight="15.0" prefWidth="156.0"
+                                       text="%label.maxResults"/>
+                                <Label layoutX="32.0" layoutY="69.0" text="%label.dataDirectory"/>
+                                <TextField fx:id="dataPath" layoutX="207.0" layoutY="64.0" prefHeight="25.0"
+                                           prefWidth="302.0"/>
+                                <Button fx:id="pathBrowser" layoutX="520.0" layoutY="64.0" mnemonicParsing="false"
+                                        onAction="#chooseDataDirectory" text="%button.browse"/>
+
+                                <Label layoutX="32.0" layoutY="108.0" text="%label.indexDirectory"/>
+                                <TextField fx:id="indexPath" layoutX="207.0" layoutY="103.0" prefHeight="25.0"
+                                           prefWidth="302.0"/>
+                                <Button fx:id="indexBrowser" layoutX="520.0" layoutY="103.0" mnemonicParsing="false"
+                                        onAction="#chooseIndexDirectory" text="%button.browse"/>
+
+                                <Label layoutX="32.0" layoutY="155.0" text="%label.appLanguage"/>
+                                <ComboBox fx:id="languageCombobox" layoutX="207.0" layoutY="150.0" prefHeight="25.0"
+                                          prefWidth="174.0" promptText="%combobox.selectLanguage"/>
+
+                                <Button layoutX="32.0" layoutY="264.0" mnemonicParsing="false"
+                                        onAction="#resetToDefaultGeneralValues" text="%button.resetDefaultValues"/>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab closable="false" text="%tab.highlight">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Label layoutX="84.0" layoutY="58.0" prefHeight="15.0" prefWidth="274.0"
+                                       text="%label.colorHieroPicker"/>
+                                <ColorPicker fx:id="hieroColorPicker" layoutX="370.0" layoutY="53.0"/>
+                                <ColorPicker fx:id="latinColorPicker" layoutX="370.0" layoutY="125.0"/>
+                                <Label layoutX="84.0" layoutY="130.0" prefHeight="15.0" prefWidth="255.0"
+                                       text="%label.colorLatinPicker"/>
+                                <CheckBox fx:id="disableHiero" layoutX="29.0" layoutY="25.0" mnemonicParsing="false"
+                                          text="%checkbox.disableHighlightHieroSearches"/>
+                                <CheckBox fx:id="disableLatin" layoutX="29.0" layoutY="90.0" mnemonicParsing="false"
+                                          text="%checkbox.disableHighlightLatinSearches"/>
+                                <Button layoutX="29.0" layoutY="243.0" mnemonicParsing="false"
+                                        onAction="#resetToDefaultHighlightValues" text="%button.resetDefaultValues"/>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>
