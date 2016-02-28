@@ -29,11 +29,11 @@ public class Parser {
         ArrayList<Pair> positions = new ArrayList<Pair>();
         int lastEnd = 0;
 
-        Pattern pattern = Pattern.compile("\\+[bli][^\\+]*\\+s[\\-!]*");
+        Pattern pattern = Pattern.compile("\\+[bli]([^\\+]*)\\+s[\\-!]*");
         Matcher matcher = pattern.matcher(text);
 
         while (matcher.find()) {
-            latinText.append(matcher.group());
+            latinText.append(matcher.group(1));
             positions.add(new Pair(lastEnd, matcher.start()));
             lastEnd = matcher.end() + 1;
         }
@@ -49,11 +49,11 @@ public class Parser {
         int lastEnd = 0;
 
         String text = removeHeader(originalText);
-        Pattern pattern = Pattern.compile("\\+[bli][^\\+]*\\+s[\\-!]*");
+        Pattern pattern = Pattern.compile("\\+[bli]([^\\+]*)\\+s[\\-!]*");
         Matcher matcher = pattern.matcher(text);
 
         while (matcher.find()) {
-            latinText.append(matcher.group());
+            latinText.append(matcher.group(1));
             positions.add(new Pair(lastEnd, matcher.start()));
             lastEnd = matcher.end() + 1;
         }
@@ -61,26 +61,6 @@ public class Parser {
 
         String[] bothText = {latinText.toString(),
                 buildText(positions, text).toString()};
-        // HieroAnalyzer analyzer = new HieroAnalyzer();
-        // TokenStream stream = analyzer.tokenStream("hieroText", bothText[1]);
-        // CharTermAttribute termAtt =
-        // stream.addAttribute(CharTermAttribute.class);
-        //
-        // try {
-        // stream.reset();
-        //
-        // // print all tokens until stream is exhausted
-        // while (stream.incrementToken()) {
-        // System.out.println(termAtt.toString());
-        // }
-        //
-        // stream.end();
-        // } finally {
-        // stream.close();
-        // }
-
-        // System.out.println("LATIN TEXT " + latinText.toString());
-        // System.out.println("HIERO TEXT " + bothText[1]);
         return bothText;
     }
 
@@ -88,8 +68,8 @@ public class Parser {
         StringBuilder rebuildText = new StringBuilder();
         if (!positions.isEmpty()) {
             for (int i = 0; i < (positions.size()); i++) {
-                rebuildText.append(text.substring((Integer) positions.get(i)
-                        .getFirst(), (Integer) positions.get(i).getSecond()));
+                rebuildText.append(text.substring(positions.get(i)
+                  .getFirst(), positions.get(i).getSecond()));
             }
         }
 
@@ -114,6 +94,5 @@ public class Parser {
         return buildText(positions, text);
     }
 
-    // TODO Eliminar headers de los textos (empiezan por ++ y terminan con +s)
 
 }
