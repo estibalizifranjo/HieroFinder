@@ -8,27 +8,27 @@ package es.udc.pfc.model.utils;
  */
 public class Pair {
 
-    private Object first;
-    private Object second;
+    private int first;
+    private int second;
 
-    public Pair(Object first, Object second) {
+    public Pair(int first, int second) {
         this.first = first;
         this.second = second;
     }
 
-    public Object getFirst() {
+    public int getFirst() {
         return first;
     }
 
-    public void setFirst(Object first) {
+    public void setFirst(int first) {
         this.first = first;
     }
 
-    public Object getSecond() {
+    public int getSecond() {
         return second;
     }
 
-    public void setSecond(Object second) {
+    public void setSecond(int second) {
         this.second = second;
     }
 }
