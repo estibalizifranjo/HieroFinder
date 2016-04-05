@@ -28,7 +28,6 @@ public class TikaIndexer extends Indexer {
         Document doc = new Document();
 
         String[] parsedText = Parser.splitText(extractedText);
-        System.out.println(parsedText[0]);
 
         Field pathField = new StringField("pathField", file.getPath(),
                 Field.Store.YES);

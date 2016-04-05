@@ -45,7 +45,6 @@ public class ServicesImpl implements Services {
         }
         HieroQuery hieroQuery = new HieroQuery(userQuery, isFuzzy);
         Query query = hieroQuery.createQuery();
-        System.out.println(query.toString());
         ArrayList<Document> docsList = new ArrayList<Document>();
         Searcher searcher = new Searcher(indexPath);
         TopDocs topDocs = searcher.searchInIndex(query);

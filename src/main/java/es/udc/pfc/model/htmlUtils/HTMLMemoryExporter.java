@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author estibaliz.ifranjo
@@ -32,7 +34,7 @@ public class HTMLMemoryExporter {
     private HashMap<String, Base64> base64 = new HashMap<String, Base64>();
     private int cont = 0;
 
-    private String latinText = new String();
+    private ArrayList<String>  latinText =  new ArrayList<String>();
     private ArrayList<String> hieroTokens = new ArrayList<String>();
 
     private int match = 0;
@@ -98,13 +100,13 @@ public class HTMLMemoryExporter {
         setTitle(fileName);
         if ((queriesToHighlight.size() == 1)
                 && (searchFields.get(0).equalsIgnoreCase("latinText"))) {
-            this.latinText = queriesToHighlight.get(0);
+            this.latinText = splitLatinTextToHighlight(queriesToHighlight.get(0));
         } else if ((queriesToHighlight.size() == 1)
                 && (searchFields.get(0).equalsIgnoreCase("hieroText"))) {
-            this.hieroTokens = splitTextToHighlight(queriesToHighlight.get(0));
+            this.hieroTokens = splitHieroTextToHighlight(queriesToHighlight.get(0));
         } else if (queriesToHighlight.size() == 2) {
-            this.latinText = queriesToHighlight.get(0);
-            this.hieroTokens = splitTextToHighlight(queriesToHighlight.get(1));
+            this.latinText = splitLatinTextToHighlight(queriesToHighlight.get(0));
+            this.hieroTokens = splitHieroTextToHighlight(queriesToHighlight.get(1));
         }
 
         this.disableHieroHighlight = disableHieroHighlight;
@@ -113,7 +115,7 @@ public class HTMLMemoryExporter {
         this.approximatedLatinSearch = approximatedLatinSearch;
     }
 
-    public ArrayList<String> splitTextToHighlight(String hieroTextToHighlight) throws MDCSyntaxError {
+    public ArrayList<String> splitHieroTextToHighlight(String hieroTextToHighlight) throws MDCSyntaxError {
         ArrayList<String> splitedHieroText = new ArrayList<String>();
 
         MDCParserModelGenerator parser = new MDCParserModelGenerator();
@@ -129,6 +131,10 @@ public class HTMLMemoryExporter {
         }
 
         return splitedHieroText;
+    }
+
+    public ArrayList<String> splitLatinTextToHighlight (String latinText) {
+        return new ArrayList<String>(Arrays.asList(latinText.split(" ")));
     }
 
     public void setDefaults() {
@@ -429,22 +435,28 @@ public class HTMLMemoryExporter {
         private String highlightText(String s, Boolean disableLatinHighlight) {
             String span;
             String result = "";
-            if (!disableLatinHighlight && !latinText.isEmpty()) {
-                if (approximatedLatinSearch) {
-                    if (s.toLowerCase().contains(latinText.toLowerCase())) {
+
+            for (String latinToken : latinText) {
+                if (!disableLatinHighlight && !latinText.isEmpty()) {
+                    Pattern pattern = Pattern.compile(latinToken.toLowerCase());
+                    Matcher matcher = pattern.matcher(s.toLowerCase());
+                    while (matcher.find()) {
+
                         span = "<span style=\"background-color:" + latinColor + "\"> "
-                                + s + " </span>";
-                        result = s.replaceAll(s, span);
+                                + s.substring(matcher.start(), matcher.end()) + " </span>";
+                        result = s.replaceAll(s.substring(matcher.start(), matcher.end()), span);
+                        if (!result.isEmpty()) {
+                            s = result;
+                        }
                     }
-                } else {
-                    span = "<span style=\"background-color:" + latinColor + "\"> "
-                            + latinText + " </span>";
-                    result = s.toLowerCase().replaceAll(latinText.toLowerCase(), span);
+                    if (result.isEmpty()) {
+                        result = s;
+                    }
                 }
-
-            } else
+            }
+            if (latinText.isEmpty()) {
                 result = s;
-
+            }
             return result;
         }
 

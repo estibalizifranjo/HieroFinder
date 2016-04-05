@@ -29,7 +29,6 @@ public class LatinQuery extends SimpleQuery {
                     new LatinAnalyzer());
             if (this.isFuzzyQuery) {
                 userQuery = userQuery.concat("*");
-                System.out.println(userQuery);
             }
         }
 

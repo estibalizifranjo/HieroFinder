@@ -57,7 +57,6 @@ public class DocumentViewerController implements Initializable {
         this.approximatedHieroSearch = approximatedHieroSearch;
         this.approximatedLatinSearch = approximatedLatinSearch;
         textFromDocumentSelected = services.getTextFromFile(documentPath);
-        System.out.println(queries.toString());
         loadHTMLContent();
     }
 
