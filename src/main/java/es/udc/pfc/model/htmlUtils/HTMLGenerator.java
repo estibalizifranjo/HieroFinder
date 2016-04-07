@@ -3,9 +3,11 @@
  */
 package es.udc.pfc.model.htmlUtils;
 
+import jsesh.graphics.export.HTMLMemoryExporter;
 import jsesh.mdc.MDCParserModelGenerator;
 import jsesh.mdc.MDCSyntaxError;
 import jsesh.mdc.model.TopItemList;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
