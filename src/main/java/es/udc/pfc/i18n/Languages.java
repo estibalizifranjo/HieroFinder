@@ -19,6 +19,7 @@ public class Languages {
                 break;
             case "Galego":
                 locale = "GL";
+                break;
             default:
                 locale = "EN";
         }

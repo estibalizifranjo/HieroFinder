@@ -3,6 +3,7 @@
  */
 package es.udc.pfc.Controllers;
 
+import es.udc.pfc.model.ServicesFacade.ServicesImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -43,7 +44,7 @@ public class PreferencesController implements Initializable {
     @FXML
     private Button cancelButton;
     @FXML
-    private Button applyButton;
+    private Button acceptButton;
     @FXML
     private ComboBox languageCombobox;
 
@@ -51,6 +52,7 @@ public class PreferencesController implements Initializable {
     private Preferences userPreferences = Preferences.userRoot().node(
             "es.udc.pfc.hieroglyphs");
     DirectoryChooser dataDirectoryChooser = new DirectoryChooser();
+    ServicesImpl services = new ServicesImpl();
 
     @FXML
     public void cancelButtonAction() throws IOException {
@@ -59,7 +61,7 @@ public class PreferencesController implements Initializable {
     }
 
     @FXML
-    public void applyButtonAction() throws IOException {
+    public void acceptButtonAction() throws IOException {
         userPreferences.put("latinColor", Integer.toHexString(latinColorPicker.getValue().hashCode()).substring(0, 6));
         userPreferences.put("hieroColor", Integer.toHexString(hieroColorPicker.getValue().hashCode()).substring(0, 6));
         userPreferences.put("maxDocs", maxDocsTextField.getText());
@@ -69,12 +71,12 @@ public class PreferencesController implements Initializable {
         userPreferences.put("dataPath", dataPath.getText());
         userPreferences.put("indexPath", indexPath.getText());
 
-        Stage stage = (Stage) applyButton.getScene().getWindow();
+        Stage stage = (Stage) acceptButton.getScene().getWindow();
         stage.close();
     }
 
     @FXML
-    public void chooseDataDirectory() {
+    public void chooseDataDirectory() throws Exception {
         if (dataPath.getText().isEmpty()) {
             dataDirectoryChooser.setInitialDirectory(new File(System
                     .getProperty("user.home")));
@@ -86,6 +88,7 @@ public class PreferencesController implements Initializable {
                 .showDialog(pathBrowser.getScene().getWindow());
         if (dataDirectory != null) {
             dataPath.setText(dataDirectory.getAbsolutePath());
+            services.indexDocuments();
         }
     }
 
@@ -102,6 +105,7 @@ public class PreferencesController implements Initializable {
                 .showDialog(pathBrowser.getScene().getWindow());
         if (dataDirectory != null) {
             indexPath.setText(dataDirectory.getAbsolutePath());
+
         }
     }
 

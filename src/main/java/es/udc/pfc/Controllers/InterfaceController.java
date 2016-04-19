@@ -11,7 +11,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,7 +22,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import jsesh.editor.JMDCEditor;
 import jsesh.mdc.MDCSyntaxError;
@@ -88,6 +86,7 @@ public class InterfaceController implements Initializable {
     public void Search(ActionEvent e) throws IOException, ParseException {
         queries.clear();
         fields.clear();
+        results.getItems().clear();
 
         if (searchQuery.getText().isEmpty() && hieroSearchQuery.getText().isEmpty()) {
             info(0);
@@ -140,11 +139,11 @@ public class InterfaceController implements Initializable {
 
         if (e.getClickCount() == 2) {
             focusedItem = results.getFocusModel().getFocusedIndex();
-            openNewWindow(documents.get(focusedItem));
+            openDocumentViewer(documents.get(focusedItem));
         }
     }
 
-    public void openNewWindow(Document doc) throws IOException, MDCSyntaxError {
+    public void openDocumentViewer(Document doc) throws IOException, MDCSyntaxError {
 
         String docTitle = doc.get("fileName");
         String docPath = doc.get("pathField");
@@ -188,20 +187,11 @@ public class InterfaceController implements Initializable {
             hieroPaletteWindow.setX(100);
             hieroPaletteWindow.setMinHeight(700);
             hieroPaletteWindow.setMinWidth(600);
-            hieroPaletteWindow
-                    .setOnCloseRequest(new EventHandler<WindowEvent>() {
-                        public void handle(WindowEvent event) {
-                            hieroSignPaletteShowMenu
-                                    .setText("Show Hieroglyph Sign Palette");
-                        }
-                    });
             hieroPaletteWindow.show();
-            hieroSignPaletteShowMenu.setText("Hide Hieroglyph Sign Palette");
+
         } else {
-            hieroSignPaletteShowMenu.setText("Show Hieroglyph Sign Palette");
-            hieroPaletteWindow.close();
-            hieroPaletteWindow = null;
-        }
+           hieroPaletteWindow.show();
+       }
 
     }
 
@@ -231,6 +221,7 @@ public class InterfaceController implements Initializable {
     public void applyShade() {
         JMDCEditor editor = (JMDCEditor) swingNodeEditor.getContent();
         Shade s = shadesComboBox.getSelectionModel().getSelectedItem();
+        shadesComboBox.setButtonCell(new CustomCellsShade());
         hieroSearchQuery.setText(services.applyShade(editor, s));
     }
 
@@ -260,10 +251,6 @@ public class InterfaceController implements Initializable {
 
     public void closeApp(ActionEvent e) {
         System.exit(0);
-    }
-
-    public void openAbout(ActionEvent e) {
-
     }
 
     private void createAndSetSwingPalette(final SwingNode swingNode) {

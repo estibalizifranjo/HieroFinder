@@ -11,7 +11,7 @@
                 <Button fx:id="cancelButton" alignment="CENTER" cancelButton="true" defaultButton="true"
                         mnemonicParsing="false" onAction="#cancelButtonAction" text="%button.cancel"
                         textAlignment="CENTER"/>
-                <Button fx:id="applyButton" mnemonicParsing="false" onAction="#applyButtonAction" text="%button.apply"/>
+                <Button fx:id="acceptButtonButton" mnemonicParsing="false" onAction="#acceptButtonAction" text="%button.accept"/>
             </items>
         </ToolBar>
     </bottom>

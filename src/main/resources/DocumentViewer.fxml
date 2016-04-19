@@ -1,36 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.web.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.web.WebView?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="es.udc.pfc.Controllers.DocumentViewerController">
-    <center>
-        <ScrollPane fx:id="windowScroll" fitToHeight="true" fitToWidth="true" prefHeight="600.0" prefWidth="600.0"
-                    BorderPane.alignment="CENTER">
-            <content>
-                <WebView fx:id="htmlContent" minHeight="600.0" minWidth="600.0" prefWidth="600.0"/>
-            </content>
-        </ScrollPane>
-    </center>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.udc.pfc.Controllers.DocumentViewerController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
                 <Menu mnemonicParsing="false" text="%menu.file">
                     <items>
-                        <MenuItem fx:id="closeMenuItem" mnemonicParsing="false" text="%menu.close"/>
+                        <MenuItem fx:id="closeMenuItem" mnemonicParsing="false" text="%menu.close" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="%menu.view">
                     <items>
-                        <CheckMenuItem fx:id="disableHieroHighlight" mnemonicParsing="false"
-                                       onAction="#disableHieroHighlight" text="%checkmenuitem.highlightHierotext"/>
-                        <CheckMenuItem fx:id="disableLatinHighlight" mnemonicParsing="false"
-                                       onAction="#disableLatinHighlight" text="%checkmenuitem.highlightLatintext"/>
+                        <CheckMenuItem fx:id="disableHieroHighlight" mnemonicParsing="false" onAction="#disableHieroHighlight" text="%checkmenuitem.highlightHierotext" />
+                        <CheckMenuItem fx:id="disableLatinHighlight" mnemonicParsing="false" onAction="#disableLatinHighlight" text="%checkmenuitem.highlightLatintext" />
                     </items>
                 </Menu>
             </menus>
         </MenuBar>
     </top>
+   <center>
+          <WebView fx:id="htmlContent" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>
