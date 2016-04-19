@@ -35,7 +35,7 @@
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="230.0" minHeight="10.0" prefHeight="230.0" />
-                <RowConstraints maxHeight="358.0" minHeight="10.0" prefHeight="358.0" vgrow="ALWAYS" />
+                <RowConstraints vgrow="ALWAYS" />
             </rowConstraints>
             <children>
                 <GridPane fx:id="grid" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
