@@ -39,13 +39,6 @@ public class Main extends Application {
             System.out.println("First time execution. Index path is in \"" +
                     userPreferences.get("indexPath", "<error>") + "\"");
         }
-        String dataPath = userPreferences.get("dataPath", "");
-
-        Indexer indexDocs = new TikaIndexer();
-        // Indexing Documents
-        indexDocs.indexDocuments(new File(dataPath), indexDocs.getiWriter());
-        indexDocs.getiWriter().close();
-
         launch(args);
     }
 
@@ -65,7 +58,7 @@ public class Main extends Application {
             Scene scene = new Scene(page);
 
             primaryStage.setMinHeight(600);
-            primaryStage.setMinWidth(750);
+            primaryStage.setMinWidth(760);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Hieroglyphs");
             primaryStage.show();

@@ -40,4 +40,6 @@ public interface Services {
                                ArrayList<String> fields, Boolean approximatedHieroSearch, Boolean
                                        approximatedLatinSearch) throws IOException, MDCSyntaxError;
 
+    public void indexDocuments() throws Exception;
+
 }

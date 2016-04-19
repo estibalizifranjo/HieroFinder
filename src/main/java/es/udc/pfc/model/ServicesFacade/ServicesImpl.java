@@ -9,6 +9,8 @@ import es.udc.pfc.model.Query.LatinQuery;
 import es.udc.pfc.model.Query.MultipleQuery;
 import es.udc.pfc.model.extractText.TikaTextExtractor;
 import es.udc.pfc.model.htmlUtils.HTMLGenerator;
+import es.udc.pfc.model.index.Indexer;
+import es.udc.pfc.model.index.TikaIndexer;
 import es.udc.pfc.model.search.Searcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -191,5 +193,14 @@ public class ServicesImpl implements Services {
         HTMLGenerator exporter = new HTMLGenerator(documentTitle, textFromDocumentSelected, queries, fields,
                 approximatedHieroSearch, approximatedLatinSearch);
         return exporter.generateHTML();
+    }
+
+    @Override
+    public void indexDocuments() throws Exception {
+        Indexer indexDocs = new TikaIndexer();
+        // Indexing Documents
+        String dataPath = userPreferences.get("dataPath", "");
+        indexDocs.indexDocuments(new File(dataPath), indexDocs.getiWriter());
+        indexDocs.getiWriter().close();
     }
 }
