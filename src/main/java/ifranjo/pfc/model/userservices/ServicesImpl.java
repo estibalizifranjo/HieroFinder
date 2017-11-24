@@ -8,7 +8,7 @@ import ifranjo.pfc.model.queries.HieroQuery;
 import ifranjo.pfc.model.queries.LatinQuery;
 import ifranjo.pfc.model.queries.MultipleQuery;
 import ifranjo.pfc.model.extractText.TikaTextExtractor;
-import ifranjo.pfc.model.htmlUtils.HTMLGenerator;
+import ifranjo.pfc.model.htmlutils.HTMLGenerator;
 import ifranjo.pfc.model.index.Indexer;
 import ifranjo.pfc.model.index.TikaIndexer;
 import ifranjo.pfc.model.search.Searcher;

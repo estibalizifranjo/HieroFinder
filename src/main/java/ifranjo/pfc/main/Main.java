@@ -4,7 +4,7 @@ package ifranjo.pfc.main;
  *
  */
 
-import ifranjo.pfc.Controllers.InterfaceController;
+import ifranjo.pfc.controllers.InterfaceController;
 import ifranjo.pfc.i18n.Languages;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

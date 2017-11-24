@@ -1,6 +1,6 @@
 package ifranjo.pfc.controllers;
 
-import ifranjo.pfc.model.ServicesFacade.ServicesImpl;
+import ifranjo.pfc.model.userservices.ServicesImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

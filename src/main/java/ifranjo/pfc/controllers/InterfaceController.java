@@ -2,10 +2,10 @@ package ifranjo.pfc.controllers;
 
 import ifranjo.pfc.hieroglyphs.Cartouche;
 import ifranjo.pfc.hieroglyphs.Shade;
-import ifranjo.pfc.iuUtils.CustomCellsCartouche;
-import ifranjo.pfc.iuUtils.CustomCellsShade;
+import ifranjo.pfc.iuutils.CustomCellsCartouche;
+import ifranjo.pfc.iuutils.CustomCellsShade;
 import ifranjo.pfc.main.Main;
-import ifranjo.pfc.model.ServicesFacade.ServicesImpl;
+import ifranjo.pfc.model.userservices.ServicesImpl;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

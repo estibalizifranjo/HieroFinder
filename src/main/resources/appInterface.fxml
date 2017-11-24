@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="760.0" prefHeight="600.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.udc.pfc.Controllers.InterfaceController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="760.0" prefHeight="600.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ifranjo.pfc.controllers.InterfaceController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>

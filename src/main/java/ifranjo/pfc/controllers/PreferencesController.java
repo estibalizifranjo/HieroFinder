@@ -3,7 +3,7 @@
  */
 package ifranjo.pfc.controllers;
 
-import ifranjo.pfc.model.ServicesFacade.ServicesImpl;
+import ifranjo.pfc.model.userservices.ServicesImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

@@ -67,7 +67,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>es.udc.pfc.main.Main</mainClass>
+                            <mainClass>ifranjo.pfc.main.Main</mainClass>
                             <classpathPrefix>dependency-jars/</classpathPrefix>
                         </manifest>
                     </archive>
@@ -79,7 +79,7 @@
             <configuration>
                 <archive>
                     <manifest>
-                        <mainClass>es.udc.pfc.main.Main</mainClass>
+                        <mainClass>ifranjo.pfc.main.Main</mainClass>
                     </manifest>
                 </archive>
                 <descriptorRefs>
