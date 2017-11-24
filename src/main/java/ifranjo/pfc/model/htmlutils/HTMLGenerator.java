@@ -3,7 +3,6 @@
  */
 package ifranjo.pfc.model.htmlutils;
 
-import jsesh.graphics.export.HTMLMemoryExporter;
 import jsesh.mdc.MDCParserModelGenerator;
 import jsesh.mdc.MDCSyntaxError;
 import jsesh.mdc.model.TopItemList;
